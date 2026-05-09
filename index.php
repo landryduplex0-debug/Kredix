@@ -9,7 +9,14 @@ session_start();
 
 // Définir le chemin de base
 define('BASE_PATH', __DIR__);
-define('BASE_URL', '/saas');
+
+// Détecter si on est sur Vercel ou en local pour le BASE_URL
+$is_vercel = isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']);
+if ($is_vercel) {
+    define('BASE_URL', '');
+} else {
+    define('BASE_URL', '/saas');
+}
 
 // Autoload des classes
 spl_autoload_register(function ($class) {
