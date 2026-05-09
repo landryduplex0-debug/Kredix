@@ -7,9 +7,10 @@
 // Démarrer la session
 session_start();
 
-// Définir le chemin de base
+// Define base path and dynamic URL
 define('BASE_PATH', __DIR__);
-define('BASE_URL', '/saas');
+$scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+define('BASE_URL', $scriptDir === '/' ? '' : $scriptDir);
 
 // Autoload des classes
 spl_autoload_register(function ($class) {
