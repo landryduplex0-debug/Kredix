@@ -55,6 +55,7 @@ $router->get('subscription', 'SubscriptionController', 'index');
 $router->get('subscription/pay', 'SubscriptionController', 'pay');
 $router->get('subscription/upgrade', 'SubscriptionController', 'upgrade');
 $router->post('subscription/upgrade', 'SubscriptionController', 'upgrade');
+$router->post('api/webhook/monetbil', 'SubscriptionController', 'webhook');
 
 // API pour recherche AJAX
 $router->get('api/customers/search', 'CustomerController', 'apiSearch');
