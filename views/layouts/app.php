@@ -138,5 +138,6 @@ $notifCount = $currentShop ? $notifModel->countUnread($currentShop->id) : 0;
 </nav>
 
 <script src="<?= asset('js/app.js') ?>"></script>
+<script type="text/javascript" src="https://monetbil.com/widget/v2/monetbil.min.js"></script>
 </body>
 </html>

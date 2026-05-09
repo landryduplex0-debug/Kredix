@@ -46,10 +46,8 @@
                 <?php if ($currentPlan === 'starter'): ?>
                     <div style="margin-top:16px;padding:8px;background:rgba(232,168,56,0.1);border-radius:8px;font-size:12px;color:var(--primary-dark);font-weight:600;">✓ Plan actuel</div>
                 <?php elseif ($currentPlan === 'free'): ?>
-                    <form method="POST" action="<?= url('subscription/upgrade') ?>" style="margin-top:16px;">
-                        <?= CSRF::field() ?>
-                        <input type="hidden" name="plan" value="starter">
-                        <button type="submit" class="btn-k btn-primary-k" style="width:100%;justify-content:center;">Passer à Starter</button>
+                    <form action="<?= url('subscription/pay?plan=starter') ?>" method="get" data-monetbil="form" style="margin-top:16px;">
+                        <button class="btn-k btn-primary-k" type="submit" style="width:100%;justify-content:center;">Pay by Mobile Money</button>
                     </form>
                 <?php endif; ?>
             </div>
@@ -72,10 +70,8 @@
                 <?php if ($currentPlan === 'premium'): ?>
                     <div style="margin-top:16px;padding:8px;background:rgba(232,168,56,0.1);border-radius:8px;font-size:12px;color:var(--primary-dark);font-weight:600;">✓ Plan actuel</div>
                 <?php else: ?>
-                    <form method="POST" action="<?= url('subscription/upgrade') ?>" style="margin-top:16px;">
-                        <?= CSRF::field() ?>
-                        <input type="hidden" name="plan" value="premium">
-                        <button type="submit" class="btn-k btn-primary-k" style="width:100%;justify-content:center;">Passer à Premium</button>
+                    <form action="<?= url('subscription/pay?plan=premium') ?>" method="get" data-monetbil="form" style="margin-top:16px;">
+                        <button class="btn-k btn-primary-k" type="submit" style="width:100%;justify-content:center;">Pay by Mobile Money</button>
                     </form>
                 <?php endif; ?>
             </div>

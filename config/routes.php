@@ -52,6 +52,8 @@ $router->post('settings/update-password', 'SettingsController', 'updatePassword'
 
 // Abonnement
 $router->get('subscription', 'SubscriptionController', 'index');
+$router->get('subscription/pay', 'SubscriptionController', 'pay');
+$router->get('subscription/upgrade', 'SubscriptionController', 'upgrade');
 $router->post('subscription/upgrade', 'SubscriptionController', 'upgrade');
 
 // API pour recherche AJAX
