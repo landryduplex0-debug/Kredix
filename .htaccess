@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# Redirect to HTTPS in production
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Allow access to public assets
+RewriteCond %{REQUEST_URI} ^/saas/public/ [NC]
+RewriteRule ^ - [L]
+
+# If not a real file or directory, route through index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
