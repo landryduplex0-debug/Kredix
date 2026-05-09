@@ -10,13 +10,20 @@ class Database
     private function __construct()
     {
         try {
-            $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
+            $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
             $options = [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
                 PDO::ATTR_EMULATE_PREPARES   => false,
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES " . DB_CHARSET
             ];
+            
+            // Si on utilise Aiven (qui requiert SSL)
+            if (DB_PORT == '19032' || getenv('DB_SSL') == '1') {
+                $options[PDO::MYSQL_ATTR_SSL_CA] = true; // Demander SSL
+                $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false; // Désactiver la vérification stricte du certificat s'il n'est pas fourni localement
+            }
+
             $this->pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
         } catch (PDOException $e) {
             if (APP_DEBUG) {
